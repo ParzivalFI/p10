@@ -5,15 +5,20 @@ import { getMonth } from "../../helpers/Date";
 import "./style.scss";
 
 const Slider = () => {
+  // Utilisation d'un hook personnalisé appelé useData pour récupérer des données. La destructuration est utilisée pour extraire la propriété data retournée par ce hook.
   const { data } = useData();
+  //Utilisation du hook d'état (useState) pour gérer l'état local du composant. 
+  //index représente l'indice de la carte actuellement affichée, et setIndex est la fonction pour mettre à jour cet état.
   const [index, setIndex] = useState(0);
 
+
+//Tri des données récupérées par date, du plus récent au plus ancien. Le tri est effectué sur le tableau focus des données.
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
-    // Changement de < en > pour inverser le tri des évènements dans le slider
-    // du plus récent au plus ancien.
     new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
   );
 
+  //Définition de la fonction nextCard qui utilise setTimeout pour changer l'indice de la carte actuellement affichée toutes les 5000 millisecondes (5 secondes).
+  // Si l'indice atteint la fin du tableau, il revient à zéro.
   const nextCard = () => {
     // Ajout de la vérification si "byDateDesc" existé et a une valeur
     // et si la lenght de "byDateDesc" est supérieure à 0
@@ -30,6 +35,10 @@ const Slider = () => {
   useEffect(() => {
     nextCard();
   });
+
+  //Le rendu du composant comprend une liste de cartes (SlideCard) et une pagination sous forme de boutons radio. 
+  //La classe display ou hide est appliquée à chaque carte en fonction de l'indice actuel. La clé des éléments est définie comme le titre de l'événement, 
+  //et chaque bouton radio a une clé unique construite à partir du titre de l'élément dotItem.
 
   return (
     <div className="SlideCardList">

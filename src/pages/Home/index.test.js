@@ -7,7 +7,6 @@ describe("When Form is created", () => {
     await screen.findByText("Email");
     await screen.findByText("Nom");
     await screen.findByText("Prénom");
-    // Correction de l'orthographe du mot "Personel"
     await screen.findByText("Personnel / Entreprise");
   });
 

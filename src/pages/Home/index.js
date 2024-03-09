@@ -13,7 +13,7 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const {last} = useData()
+  const { last } = useData()
   return <>
     <header>
       <Menu />
@@ -99,7 +99,7 @@ const Page = () => {
               <div>Message envoyé !</div>
               <p>
                 Merci pour votre message nous tâcherons de vous répondre dans
-                les plus brefs délais
+                les plus brefs délais :D
               </p>
             </div>
           }
@@ -116,16 +116,25 @@ const Page = () => {
     <footer className="row" data-testid="footer-testid">
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
+
+
         {/* Ajout de la vérification que "last" existe avant d'exécuter "EventCard" */}
         {last && <EventCard
           imageSrc={last?.cover}
           title={last?.title}
           date={new Date(last?.date)}
           small
+          // small : Une propriété booléenne qui est vraie, indiquant probablement un style ou une disposition spécifique pour le composant EventCard.
+
           // Modification du label = "boom" par le type
           label={last?.type}
+          // label={last?.type} : Le label (étiquette) de l'événement, extrait de la propriété type de l'objet last.
           data-testid="lastEventCard-testid"
         />}
+        {/* En résumé, le code vérifie d'abord si la variable last existe, puis affiche un composant EventCard avec les informations de l'événement extraites de l'objet last, 
+à condition que last ne soit pas nul. */}
+
+
       </div>
       <div className="col contact">
         <h3>Contactez-nous</h3>
